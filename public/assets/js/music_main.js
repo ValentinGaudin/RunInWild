@@ -1,10 +1,18 @@
+const recordButton = document.getElementById('record-button');
+const targetSpeedInput = document.getElementById('target-speed');
+
 const date = new Date();
 date.setMinutes(date.getMinutes() - 30);
 const records = [[45.74884, 4.80716, date]];
 
+let targetSpeed = targetSpeedInput.value ? targetSpeedInput.value : 120;
+const acceptedValuesBpm = [120, 130, 140, 150, 160, 170, 180, 190];
+
 document.addEventListener('DOMContentLoaded', (event) => {
   if ('geolocation' in navigator) {
-    const recordButton = document.getElementById('record-button');
+    targetSpeedInput.addEventListener('change', (e) =>
+      handleChangeTargetSpeed(e, acceptedValuesBpm)
+    );
 
     recordButton.addEventListener('click', (e) =>
       handleClickRecordButton(e, records)
@@ -18,6 +26,14 @@ function handleClickRecordButton(e, records) {
   navigator.geolocation.getCurrentPosition(retrievePosition);
 
   console.log(records);
+}
+
+function handleChangeTargetSpeed(e, acceptedValuesBpm) {
+  const targetValue = +e.target.value;
+
+  if (acceptedValuesBpm.includes(targetValue)) {
+    targetSpeed = targetValue;
+  }
 }
 
 function retrievePosition(position) {
@@ -34,11 +50,23 @@ function retrievePosition(position) {
     const lastSpeedDisplay = document.getElementById('last-speed');
     lastSpeedDisplay.innerHTML = `${speedInMinPerKm} min/km`;
 
-    const currentBpm = Math.round();
+    const currentBpm = Math.round(speedInMinPerKm * 20);
 
-    if (speedInMinPerKm < 6) {
-      window.location.href = '/spotify/change?bpm=180';
+    let targetBpm = undefined;
+
+    if (currentBpm < 130) {
+      targetBpm = 120;
+    } else if (currentBpm > 180) {
+      targetBpm = 190;
+    } else if (currentBpm < targetSpeed) {
+      targetBpm = currentBpm + 10;
+    } else if (currentBpm > targetSpeed) {
+      targetBpm = currentBpm - 10;
+    } else {
+      targetBpm = currentBpm;
     }
+
+    window.location.href = `/spotify/change?target=${targetSpeed}&bpm=${targetBpm}`;
   }
 }
 
@@ -87,39 +115,4 @@ function getLastSpeed(records) {
 function getMinPerKm(kmPerHour) {
   const speed = 60 / kmPerHour;
   return Math.ceil(speed);
-}
-
-/////////////////////////////////////////////////////////
-
-function showPosition(position) {
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
-
-  const staticlat = 45.74884;
-  const staticlong = 4.80716;
-
-  const speed = position.coords.speed;
-
-  lastCoord = [latitude, longitude];
-
-  console.log(latitude, longitude, speed);
-
-  const distance = getDistanceFromLatLonInKm(
-    latitude,
-    longitude,
-    staticlat,
-    staticlong
-  );
-
-  //   const key = 'iHoF2pB9VG7u5GJjia3HE5D2nJOpOA0D';
-
-  //   const img_url = `https://www.mapquestapi.com/staticmap/v5/map?locations=${latitude},${longitude}&size=600,200&zoom=15&key=${key}`;
-
-  //   document.getElementById('mapholder').innerHTML =
-  //     "<img src='" + img_url + "'>";
-
-  //   const img_url2 = `https://www.mapquestapi.com/staticmap/v5/map?locations=${staticlat},${staticlong}&size=600,200&zoom=15&key=${key}`;
-
-  //   document.getElementById('mapholder2').innerHTML =
-  //     "<img src='" + img_url2 + "'>";
 }
