@@ -14,44 +14,36 @@
 			<button class="spotify_image_black">
 				<img onmouseover='passageDeLaSouris(this)' onmouseout='departDeLaSouris(this)' id="black" src="/assets/images/black-spotify.png">
 			</button>
+			{% if session is not defined %}
 			<img class="arrow_spotify" src="/assets/images/up.png">
+			{% endif %}
 		</div>
-
-		</input>
 	</form>
+	<div class="div_question_image">
+		<div class="question_image_black">
+			<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
+		</div>
+	</div>
 	<div class="logo">
     	<img class="logo_image" src="/assets/images/RunInWild-orange.png">
     </div>
 	<div class="frame_spotify image">
 		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
-			<iframe class="frame" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-			{# <iframe id="track" class="frame" src="" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> #}
+			<iframe class="frame" src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
     </div>
 	<div class="div_orange">
-		<div class="vitesse">
-			<button id="record-button">Record</button>
+		<div class="target_speed">
+			<p>Target Speed</p>
+			<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
 		</div>
-		<p>ACTUAL BPM :</p>
-		<p id="actual-bpm">{{actual}}</p>
+		<div class="vitesse">
+			<button id="record-button">RECORD</button>
+			<p>Last speed in interval:
+				<span id="last-speed"></span>
+			</p>
+		</div>
 	</div>
-	<div>
-		<p>Last speed in interval:
-			<span id="last-speed"></span>
-		</p>
-	</div>
-
-</div>
-<div>
-	<p>Last speed in interval:
-		<span id="last-speed"></span>
-	</p>
-</div>
-
-<div>
-	<p>Target Speed</p>
-	<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
-</div>
 
 {% endblock %}
 {% block javascript %}

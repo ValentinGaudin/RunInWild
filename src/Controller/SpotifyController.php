@@ -37,7 +37,7 @@ class SpotifyController extends AbstractController
             $playlists = $results['playlists']['items'];
 
             $id = $playlists['1']['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'connexion' => $_SESSION['connexion']]);
+            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'connexion' => $_SESSION['connexion'], 'session' => 1]);
         }
     }
 
@@ -140,6 +140,7 @@ class SpotifyController extends AbstractController
         ]);
 
         $statusCode = $response->getStatusCode(); // get Response status code 200
+
 
         if ($statusCode === 200) {
             $contents = $response->getContent();
