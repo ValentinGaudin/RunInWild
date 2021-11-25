@@ -17,4 +17,5 @@ return [
     'spotify/test' => ['SpotifyController', 'test'],
     '' => ['SpotifyController', 'show'],
     'spotify/change' => ['SpotifyController', 'change', ['bpm']],
+    'deconnexion' => ['SpotifyController', 'deconnexion']
 ];
