@@ -66,7 +66,7 @@ function retrievePosition(position) {
       targetBpm = currentBpm;
     }
 
-    window.location.href = `/spotify/change?target=${targetSpeed}&bpm=${targetBpm}`;
+    window.location.href = `/spotify/change?target=${targetSpeed}&bpm=${targetBpm}&actual=${currentBpm}`;
   }
 }
 
