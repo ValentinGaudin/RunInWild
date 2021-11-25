@@ -1,5 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQArLdYF8ziT2_kHCxdK1Ic-ivcweDSfQs6XzV4BkhhB59h3L1FSrGRnFB4Q5kajL7aVmcraiXoTLPnEKWreMuEQx8R_fARwHlPlRH4uqEQHk4-zhucmVXnoIwHdyVmaKzcewBRQaCn_uUtXP9pcPxfd-cz_7R6d';
+    const token = '?token';
     const player = new Spotify.Player({
         name: 'Matthieu Chabot',
         getOAuthToken: cb => { cb(token); },
