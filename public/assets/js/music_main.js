@@ -36,12 +36,13 @@ function retrievePosition(position) {
 }
 
 function getSpeedFromTwoRecords(record1, record2) {
-  const distance = getDistanceFromLatLonInKm(
+  let distance = getDistanceFromLatLonInKm(
     record1[0],
     record1[1],
     record2[0],
     record2[1]
   );
+  distance = distance === 0 ? 0.1 : distance;
 
   const interval = (record2[2] - record1[2]) / (1000 * 60 * 60); // interval in hours
 
@@ -78,7 +79,7 @@ function getLastSpeed(records) {
 
 function getMinPerKm(kmPerHour) {
   const speed = 60 / kmPerHour;
-  return speed;
+  return Math.ceil(speed);
 }
 
 /////////////////////////////////////////////////////////
