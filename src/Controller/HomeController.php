@@ -9,12 +9,11 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Component\HttpClient\HttpClient;
 
 class HomeController extends AbstractController
 {
-
-    private string $accessToken;
 
     private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
 
@@ -31,8 +30,17 @@ class HomeController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $code = $_GET['code'];
 
-            $this->accessToken = $this->getAccessToken($code);
-            var_dump($this->accessToken);
+            try {
+                $infoToken = $this->getAccessToken($code);
+            } catch (Exception $exception) {
+                return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
+            }
+
+            $_SESSION["token"] = $infoToken['access_token'];
+            $_SESSION["refreshToken"] = $infoToken['refresh_token'];
+            $_SESSION["tokenType"] = $infoToken['token_type'];
+
+
 
             $client = HttpClient::create();
 
@@ -85,16 +93,21 @@ class HomeController extends AbstractController
         return $randomString;
     }
 
-    public function getAccessToken(string $code): string
+    public function getAccessToken(string $code): array
     {
         $client = HttpClient::create();
 
-        $response = $client->request('POST', 'https://api.spotify.com/api/token', [
-            'query' => [
+        $response = $client->request('POST', 'https://accounts.spotify.com/api/token', [
+            'headers' => [
+                "Content-Type" => "application/x-www-form-urlencoded",
+                "Authorization" => "Basic YWMyODY1MDcxZDM3NDIwM2FmNmM4ZDQ2NjI5ZjdiY2I6YjUzYzlmNGViMWE0NGRhNzk1M2E2NWM2ZDcxNjYzMTE="
+
+            ],
+            'body' => [
                 'grant_type' =>  "authorization_code",
                 'code' => $code,
                 'redirect_uri' => 'http://localhost:8000/loggin',
-                "Content-Type" => "application/x-www-form-urlencoded",
+
             ],
 
         ]);
@@ -103,14 +116,12 @@ class HomeController extends AbstractController
 
         if ($statusCode === 200) {
             $contents = $response->getContent();
-            // var_dump($contents);
-            // die();
             // get the response in JSON format
 
             $accessToken = json_decode($contents, true);
 
             return $accessToken;
         }
-        return '';
+        throw new Exception("Error code $statusCode", 1);
     }
 }
