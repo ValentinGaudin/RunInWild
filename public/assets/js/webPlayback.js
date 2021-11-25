@@ -1,4 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
+
   const token = '?TOKEN';
   const player = new Spotify.Player({
     name: 'Valentin Gaudin',

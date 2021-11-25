@@ -12,7 +12,9 @@ class SpotifyController extends AbstractController
     public function show()
     {
 
+
         $token = self::TOKEN;
+
         $client = HttpClient::create();
 
         $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
@@ -23,12 +25,23 @@ class SpotifyController extends AbstractController
             "auth_bearer" => $token
         ]);
 
+            $players = $client->request("GET", "https://api.spotify.com/v1/me/player", [
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Content-Type" => "application/json"],
+                "auth_bearer" => $token]);
+
         if ($response->getStatusCode() == 200) {
             $results = $response->toArray();
+            $player = $players->getContent();
+
             $playlists = $results['playlists']['items'];
-            $id = $playlists['1']['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['id' => $id]);
+
+            $id = $playlists ['1']['id'];
+            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'player' => $player]);
+
         }
+
         return $response->getStatusCode();
     }
 
