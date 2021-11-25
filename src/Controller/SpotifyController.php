@@ -7,7 +7,7 @@ use Symfony\Component\HttpClient\HttpClient;
 class SpotifyController extends AbstractController
 {
 
-    private const TOKEN = "?TOKEN";
+    private const TOKEN = "BQD3liYn0B6x8UV4dnmgmBZOhF5lmZC3lt9S0UjXiRGD4ALZzGesvO-1noQYJ7QKb4qEb3kZ3ZtuNY4mklkcfcpmG4S4g1aMuIvvq73kAjekwSe7HaluS1J0WcGyno_6QItNTKKkaZyoPjCnQjdUUhdGgnHFSls";
 
     public function show()
     {
