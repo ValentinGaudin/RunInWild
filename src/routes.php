@@ -14,4 +14,5 @@ return [
     'items/add' => ['ItemController', 'add',],
     'items/delete' => ['ItemController', 'delete',],
     'spotify/test' => ['MusicController', 'test'],
+    'spotify' => ['SpotifyController', 'show'],
 ];
