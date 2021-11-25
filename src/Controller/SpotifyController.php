@@ -6,7 +6,6 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class SpotifyController extends AbstractController
 {
-
     private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
 
     public function show()
@@ -37,14 +36,22 @@ class SpotifyController extends AbstractController
             "auth_bearer" => $token
         ]);
 
+        // $players = $client->request("GET", "https://api.spotify.com/v1/me/player", [
+        //     'headers' => [
+        //         "Accept" => "application/json",
+        //         "Content-Type" => "application/json"
+        //     ],
+        //     "auth_bearer" => $token
+        // ]);
+
         if ($response->getStatusCode() == 200) {
             $results = $response->toArray();
-            $player = $players->getContent();
+            // $player = $players->getContent();
 
             $playlists = $results['playlists']['items'];
 
             $id = $playlists['1']['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'player' => $player]);
+            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id]);
         }
     }
 
@@ -131,9 +138,6 @@ class SpotifyController extends AbstractController
     public function getAccessToken(string $code): array
     {
         $client = HttpClient::create();
-
-        var_dump(CLIENT_64);
-        die();
 
         $response = $client->request('POST', 'https://accounts.spotify.com/api/token', [
             'headers' => [

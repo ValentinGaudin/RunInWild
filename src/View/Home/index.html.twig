@@ -1,14 +1,13 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <div class="frame_spotify">
-    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EfUXcn9uVYPRP?utm_source=generator" width="90%" height="50" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <div class="logo">
+    <img class="logo_image" src="/assets/images/RunInWild-orange.png">
     </div>
-    <div class="frame_spotify">
-    <p>Précédent</p>
-    <iframe src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    <p>Suivant</p>
+    <div class="frame_spotify image">
+    <a href="#"><img class="arrow" src="/assets/images/back.png"></a>
+    <iframe class="frame" src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <a href="#"><img class="arrow" src="/assets/images/next.png"></a>
     </div>
 <html>
     <head>
