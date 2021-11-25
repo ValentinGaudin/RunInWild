@@ -1,10 +1,158 @@
-.frame_spotify {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  margin: 10px;
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
 }
-
 p {
   margin: auto;
+}
+
+.logo {
+  background-color: rgb(223, 223, 223);
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_image {
+  width: 200px;
+  height: 100px;
+}
+
+.div_spotify_image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.spotify_image_black {
+  position: fixed;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  background-color: transparent;
+  /* background-image: url("/assets/images/black_spotify.png");
+  background-position: center;
+  background-size: contain; */
+  border: 0px;
+}
+
+.spotify_image_black img {
+  max-width: 100%;
+}
+
+.frame_spotify {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.frame {
+  opacity: 0.8;
+}
+
+.image {
+  background-image: url("/assets/images/runner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 300px;
+}
+
+.arrow {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+}
+
+.arrow_spotify {
+  display: flex;
+  position: fixed;
+  top: 70px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+}
+
+.div_orange {
+  width: 100%;
+  height: 300px;
+  background: rgb(241, 29, 253);
+  background: linear-gradient(
+    0deg,
+    rgba(241, 29, 253, 1) 0%,
+    rgba(252, 76, 1, 1) 64%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.vitesse {
+  background-color: white;
+  border-radius: 10px;
+  width: 80px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#record-button {
+  color: #fc4c01;
+  background-color: white;
+  border: 0px;
+  font-weight: bold;
+}
+
+#black {
+  width: 40px;
+  height: 40px;
+}
+
+@-webkit-keyframes bounce {
+  0%,
+  100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+img.arrow_spotify {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }

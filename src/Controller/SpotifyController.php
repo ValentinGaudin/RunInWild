@@ -6,7 +6,6 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class SpotifyController extends AbstractController
 {
-
     private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
 
     public function show()
