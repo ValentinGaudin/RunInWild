@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/music.css">
+{% endblock %}
+
+{% block content %}
+
+	<h1>Hello Wilder !</h1>
+	<button id="record-button">Record</button>
+	<div>
+		<p>Last speed in interval:
+			<span id="last-speed"></span>
+		</p>
+	</div>
+
+{% for playlist in results.playlists.items %}
+
+        <li>{{playlist.name}}</li>
+        <li>{{playlist.id}}</li>
+        <li>{{playlist.description}}</li>
+        
+        <hr>
+{% endfor %}
+    
+    <pre>
+        {{ dump(id) }}
+    </pre>
+
+    <pre>
+        {{ dump(player) }}
+    </pre>
+
+    {{player}}
+
+    <h1>Hello Wilder !</h1>
+
+    <div class="frame_spotify">
+    <iframe src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="90%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+    <div class="frame_spotify">
+    <p>Précédent</p>
+    <iframe src="https://open.spotify.com/embed/track/{{id}}?utm_source=generator" width="600" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <p>Suivant</p>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+	<script src="https://sdk.scdn.co/spotify-player.js"></script>
+	<script src="/assets/js/webPlayback.js"></script>
+	<script src="/assets/js/music_main.js"></script>
+{% endblock %}
+
