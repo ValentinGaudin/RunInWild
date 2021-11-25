@@ -33,6 +33,10 @@ function handleChangeTargetSpeed(e, acceptedValuesBpm) {
 
   if (acceptedValuesBpm.includes(targetValue)) {
     targetSpeed = targetValue;
+  } else if (targetValue < 130) {
+    targetSpeed = 120;
+  } else if (targetValue > 180) {
+    targetSpeed = 190;
   }
 }
 
