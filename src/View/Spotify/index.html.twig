@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+
+    {% for playlist in results.playlists.items %}
+
+        <li>{{playlist.name}}</li>
+        <li>{{playlist.id}}</li>
+        <li>{{playlist.description}}</li>
+        <hr>
+
+    {% endfor %}
+
+    <h1>Hello Wilder !</h1>
+
+    
+
+{% endblock %}
