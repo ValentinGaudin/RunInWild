@@ -1,5 +1,21 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+	<h1>Hello Wilder !</h1>
+
+	{% for playlist in contents.playlists.items %}
+		<p>id :
+			{{playlist.id}}</p>
+		<p>name :
+			{{playlist.name}}</p>
+		<p>description :
+			{{playlist.description}}</p>
+		<hr>
+
+	{% endfor %}
+
+	<form action="/" method="post">
+		<input type="submit" value="Connexion">
+	</form>
+
 {% endblock %}
