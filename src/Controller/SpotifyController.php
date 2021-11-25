@@ -17,14 +17,12 @@ class SpotifyController extends AbstractController
             return $this->twig->render('Spotify/index.html.twig');
         }
 
-
         $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
-
 
         $client = HttpClient::create();
 
-        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
-            'query' => [
+        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=20", [
+            'headers' => [
                 "Accept" => "application/json",
                 "Content-Type" => "application/json",
                 "Authorization" => $token
