@@ -14,6 +14,4 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class HomeController extends AbstractController
 {
-
-    
 }
