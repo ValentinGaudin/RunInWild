@@ -1,0 +1,10 @@
+.frame_spotify {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 10px;
+}
+
+p {
+  margin: auto;
+}
