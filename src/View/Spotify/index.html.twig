@@ -12,7 +12,6 @@
 			</button>
 			<img class="arrow_spotify" src="/assets/images/up.png">
 		</div>
-		</input>
 	</form>
 	<div class="logo">
     	<img class="logo_image" src="/assets/images/RunInWild-orange.png">
@@ -24,14 +23,14 @@
     </div>
 	<div class="div_orange">
 		<div class="vitesse">
-			<button id="record-button">Record</button>
+			<button id="record-button">RECORD</button>
+			<p>Last speed in interval:
+				<span id="last-speed"></span>
+			</p>
 		</div>
-		<p>ACTUAL BPM :</p>
-	</div>
-	<div>
-		<p>Last speed in interval:
-			<span id="last-speed"></span>
-		</p>
+		<div class="vitesse_bpm">
+			<p class="">ACTUAL BPM :</p>
+		</div>
 	</div>
 
 {% for playlist in results.playlists.items %}
@@ -43,13 +42,6 @@
         <hr>
 {% endfor %}
     
-    <pre>
-        {{ dump(id) }}
-    </pre>
-
-    <pre>
-        {{ dump(player) }}
-    </pre>
 
     {{player}}
 
