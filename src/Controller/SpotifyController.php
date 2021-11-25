@@ -6,19 +6,30 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class SpotifyController extends AbstractController
 {
-
-    private const TOKEN = "BQA1lNjjmORVSuZ2ofiPIyJKoQVClT0YUmGmP-yVm7zagi0aT5yfs902RskxT9qA7X3pDXb1uz0w1QD0cKUiAX3DaZUboi4ewOWOWn0snrp_FEq0XJrF80ASt92dTo7reQqs4R-FS9P8UYrvhyc9qlSDv3gBFAk";
+    private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
 
     public function show()
     {
+        if (!isset($_SESSION["token"])) {
+            return $this->twig->render('Spotify/index.html.twig');
+        }
 
+        $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
 
-        $token = self::TOKEN;
 
         $client = HttpClient::create();
 
         $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
             'query' => [
+                "Accept" => "application/json",
+                "Content-Type" => "application/json",
+                "Authorization" => $token
+            ],
+
+        ]);
+
+        $players = $client->request("GET", "https://api.spotify.com/v1/me/player", [
+            'headers' => [
                 "Accept" => "application/json",
                 "Content-Type" => "application/json"
             ],
@@ -42,13 +53,11 @@ class SpotifyController extends AbstractController
             $id = $playlists['1']['id'];
             return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id]);
         }
-
-        return $response->getStatusCode();
     }
 
     public function change($bpm)
     {
-        $token = self::TOKEN;
+        $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
         $client = HttpClient::create();
 
         $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
@@ -83,5 +92,78 @@ class SpotifyController extends AbstractController
         }
 
         return $filteredPlaylists;
+    }
+
+    public function login()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $code = $_GET['code'];
+
+            try {
+                $infoToken = $this->getAccessToken($code);
+            } catch (\Exception $exception) {
+                return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
+            }
+
+            $_SESSION["token"] = $infoToken['access_token'];
+            $_SESSION["refreshToken"] = $infoToken['refresh_token'];
+            $_SESSION["tokenType"] = $infoToken['token_type'];
+            return $this->twig->render('Spotify/index.html.twig', ['connexion' => 'Connexion réussie']);
+        }
+
+        return $this->twig->render('Spotify/index.html.twig', ['connexion' => 'Echec de connexion à spotify']);
+    }
+
+    public function authorize()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            header("Location: https://accounts.spotify.com/authorize?client_id=$this->clientId&response_type=code&redirect_uri=http://localhost:8000/login");
+            return;
+        }
+
+        return $this->twig->render('Spotify/index.html.twig');
+    }
+
+    public static function generateRandomString($length = 16)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function getAccessToken(string $code): array
+    {
+        $client = HttpClient::create();
+
+        $response = $client->request('POST', 'https://accounts.spotify.com/api/token', [
+            'headers' => [
+                "Content-Type" => "application/x-www-form-urlencoded",
+                "Authorization" => "Basic " . CLIENT_64
+
+            ],
+            'body' => [
+                'grant_type' =>  "authorization_code",
+                'code' => $code,
+                'redirect_uri' => 'http://localhost:8000/login',
+
+            ],
+
+        ]);
+
+        $statusCode = $response->getStatusCode(); // get Response status code 200
+
+        if ($statusCode === 200) {
+            $contents = $response->getContent();
+            // get the response in JSON format
+
+            $accessToken = json_decode($contents, true);
+
+            return $accessToken;
+        }
+        throw new \Exception("Error code $statusCode", 1);
     }
 }
