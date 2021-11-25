@@ -18,7 +18,7 @@ class SpotifyController extends AbstractController
         }
 
         $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
-        
+
         $client = HttpClient::create();
 
         $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=20", [

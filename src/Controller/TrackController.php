@@ -21,7 +21,6 @@ class TrackController extends AbstractController
         $playlist = $response -> getContent();
 
         return $playlist;
-
     }
 
     public function trackTrack()
@@ -42,18 +41,18 @@ class TrackController extends AbstractController
 
     public function device()
     {
-    $client = HttpClient::create();
+        $client = HttpClient::create();
 
-    $response = $client->request("GET", "https://api.spotify.com/v1/me/player/devices", [
+        $response = $client->request("GET", "https://api.spotify.com/v1/me/player/devices", [
         'headers' => [
             "Accept" => "application/json",
             "Content-Type" => "application/json"
         ],
         "auth_bearer" => $_SESSION['token']
-    ]);
-    $device = $response -> getContent();
+        ]);
+        $device = $response -> getContent();
 
-    return $device;
+        return $device;
     }
 }
 
