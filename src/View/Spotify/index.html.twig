@@ -27,6 +27,9 @@
 		<hr>
 	{% endfor %} #}
 
+    <pre>
+        {{ dump(results) }}
+    </pre>
 	<pre>
         {{ dump(player) }}
     </pre>
@@ -34,11 +37,10 @@
 	<h1>Hello Wilder !</h1>
 
 	<div class="frame_spotify">
-		<iframe id="playlist" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+		<iframe id="playlist" src="" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 	</div>
 	<div class="frame_spotify">
-
-		<iframe id="track" src="" width="600" height="300" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        <iframe id="track" src="https://open.spotify.com/embed/track/5pmbZWt1lYVMvZ12MSdtqF?utm_source=generator" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 	</div>
 

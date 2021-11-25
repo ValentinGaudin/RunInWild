@@ -1,5 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = "BQD8sASTO3uJQ96F08DmAq99hhoBulYdNOxd-DaTVilmnYsvdEgmbmKV_z7hvVCeIavIdmmVRapO73fdw350C4C8LcpYmjzkBF6JJpqNpJsBiW-PJgQrOG1zvlG1VG5VyAnOrmbkzaIMBeqdGraA2SAcrpWgV5F5oA";
+  const token = "BQDVb11PQv8g0zn8jTIKLpvdZVe5MSWZC450o38pRwq01HauAUjSBuRe_FMkMr1dUbPMQvOETjfpFzoVzrf8JJNKgqUhtFHJA7MDauQfxtJziqYXFHuSVzRnBBHqSFTZ42nQAtRC7vwJ0QAcOYGdE_7E4grwBIX9LQ";
   const player = new Spotify.Player({
     name: 'Valentin Gaudin',
     getOAuthToken: (cb) => {

@@ -6,23 +6,29 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class TrackController extends AbstractController
 {
-    private const TOKEN = "BQD8sASTO3uJQ96F08DmAq99hhoBulYdNOxd-DaTVilmnYsvdEgmbmKV_z7hvVCeIavIdmmVRapO73fdw350C4C8LcpYmjzkBF6JJpqNpJsBiW-PJgQrOG1zvlG1VG5VyAnOrmbkzaIMBeqdGraA2SAcrpWgV5F5oA";
+    private const TOKEN = "BQDVb11PQv8g0zn8jTIKLpvdZVe5MSWZC450o38pRwq01HauAUjSBuRe_FMkMr1dUbPMQvOETjfpFzoVzrf8JJNKgqUhtFHJA7MDauQfxtJziqYXFHuSVzRnBBHqSFTZ42nQAtRC7vwJ0QAcOYGdE_7E4grwBIX9LQ";
 
-    public function track()
+    public function trackPlaylist()
     {
         $token = self::TOKEN;
 
         $client = HttpClient::create();
 
-        $response = $client->request("GET", "https://api.spotify.com/v1/me/player/currently-playing", [
+        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=name%3Abpm&type=playlist&limit=40", [
             'headers' => [
                 "Accept" => "application/json",
                 "Content-Type" => "application/json"
             ],
             "auth_bearer" => $token
         ]);
-        $players = $response -> getContent();
+        $track = $response -> getContent();
 
-        return $players;
+        
+        return $track;
+
     }
+
 }
+
+//https://api.spotify.com/v1/search?q=name%3Abpm&type=playlist&limit=40
+//https://api.spotify.com/v1/search?q=bpm&type=track

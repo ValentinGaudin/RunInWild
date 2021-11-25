@@ -29,13 +29,13 @@ class SpotifyController extends AbstractController
 
         ]);
 
-        $players = $client->request("GET", "https://api.spotify.com/v1/me/player", [
-            'headers' => [
-                "Accept" => "application/json",
-                "Content-Type" => "application/json"
-            ],
-            "auth_bearer" => $token
-        ]);
+        // $players = $client->request("GET", "https://api.spotify.com/v1/me/player", [
+        //     'headers' => [
+        //         "Accept" => "application/json",
+        //         "Content-Type" => "application/json"
+        //     ],
+        //     "auth_bearer" => $token
+        // ]);
 
         if ($response->getStatusCode() == 200) {
             $results = $response->toArray();
@@ -44,7 +44,11 @@ class SpotifyController extends AbstractController
             $playlists = $results['playlists']['items'];
 
             $id = $playlists['1']['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'player' => $player]);
+            return $this->twig->render('Spotify/index.html.twig', [
+                'results' => $results,
+                'id' => $id, 
+                // 'player' => $player
+        ]);
         }
     }
 
