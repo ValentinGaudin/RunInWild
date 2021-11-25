@@ -1,7 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/music.css">
+	<link
+	rel="stylesheet" href="/assets/css/music.css">
+	{# <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' *spotify.com "> #}
+	<meta allow="encrypted-media">
+
 {% endblock %}
 
 {% block content %}
@@ -12,16 +16,17 @@
 			</button>
 			<img class="arrow_spotify" src="/assets/images/up.png">
 		</div>
-		</input>
+
 	</form>
 	<div class="logo">
-    	<img class="logo_image" src="/assets/images/RunInWild-orange.png">
-    </div>
+		<img class="logo_image" src="/assets/images/RunInWild-orange.png">
+	</div>
 	<div class="frame_spotify image">
 		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
-			<iframe class="frame" src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+		<iframe class="frame" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="60%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+		{# <iframe id="track" class="frame" src="" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> #}
 		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
-    </div>
+	</div>
 	<div class="div_orange">
 		<div class="vitesse">
 			<button id="record-button">Record</button>
@@ -32,34 +37,18 @@
 		<p>Last speed in interval:
 			<span id="last-speed"></span>
 		</p>
+
 	</div>
+	<p>ACTUAL BPM :</p>
+	<p id="actual-bpm">{{actual}}</p>
 
-{% for playlist in results.playlists.items %}
-
-        <li>{{playlist.name}}</li>
-        <li>{{playlist.id}}</li>
-        <li>{{playlist.description}}</li>
-        
-        <hr>
-{% endfor %}
-    
-    <pre>
-        {{ dump(id) }}
-    </pre>
-
-    <pre>
-        {{ dump(player) }}
-    </pre>
-
-    {{player}}
-
-
+	<div>
+		<p>Last speed in interval:
+			<span id="last-speed"></span>
+		</p>
+	</div>
+	<div>
+		<p>Target Speed</p>
+		<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
+	</div>
 {% endblock %}
-
-{% block javascript %}
-	<script src="https://sdk.scdn.co/spotify-player.js"></script>
-	<script src="/assets/js/webPlayback.js"></script>
-	<script src="/assets/js/music_main.js"></script>
-	<script src="/assets/js/style.js"></script>
-{% endblock %}
-

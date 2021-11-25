@@ -29,6 +29,8 @@ class SpotifyController extends AbstractController
             $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
         } catch (Exception $exception) {
             $this->spotifyManager->refreshToken();
+        }
+        try {
             $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
         } catch (Exception $exception) {
             return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
@@ -39,42 +41,23 @@ class SpotifyController extends AbstractController
         return $this->twig->render('Spotify/index.html.twig', ['results' => $playlists, 'id' => $id, 'connexion' => $_SESSION['connexion'], 'session' => 1]);
     }
 
-    // public function change($bpm)
-    // {
-    //     $client = HttpClient::create();
-
-    //     $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
-    //         'query' => [
-    //             "Accept" => "application/json",
-    //             "Content-Type" => "application/json"
-    //         ],
-    //         "auth_bearer" => $_SESSION["token"]
-    //     ]);
-
-    //     if ($response->getStatusCode() == 200) {
-    //         $results = $response->toArray();
-    //         $playlists = $results['playlists']['items'];
-
-    //         $filteredPlaylists = $this->getFilteredPlaylists($playlists, $bpm);
-    //         $randId = rand(0, count($filteredPlaylists) - 1);
-
-    //         $id = $filteredPlaylists[$randId]['id'];
-    //         return $this->twig->render('Spotify/index.html.twig', ['id' => $id]);
-    //     }
-    //     return $response->getStatusCode();
-    // }
-
-    private function getFilteredPlaylists($playlists, $key)
+    public function change($target, $bpm, $actual)
     {
-        $filteredPlaylists = [];
-
-        foreach ($playlists as $playlist) {
-            if (str_contains($playlist['name'], $key)) {
-                $filteredPlaylists[] = $playlist;
-            };
+        try {
+            $playlists = $this->spotifyManager->getPlaylistByBpm($bpm, 10);
+        } catch (Exception $exception) {
+            $this->spotifyManager->refreshToken();
+        }
+        try {
+            $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
+        } catch (Exception $exception) {
+            return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
         }
 
-        return $filteredPlaylists;
+        $randId = rand(0, count($playlists) - 1);
+
+        $id = $playlists[$randId]['id'];
+        return $this->twig->render('Spotify/index.html.twig', ['id' => $id, 'target' => $target, 'actual' => $actual]);
     }
 
     public function login()
