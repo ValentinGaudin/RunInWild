@@ -29,9 +29,16 @@ function retrievePosition(position) {
 
   if (records.length > 1) {
     const lastSpeed = getLastSpeed(records);
+    const speedInMinPerKm = getMinPerKm(lastSpeed);
 
     const lastSpeedDisplay = document.getElementById('last-speed');
-    lastSpeedDisplay.innerHTML = `${getMinPerKm(lastSpeed)} min/km`;
+    lastSpeedDisplay.innerHTML = `${speedInMinPerKm} min/km`;
+
+    const currentBpm = Math.round();
+
+    if (speedInMinPerKm < 6) {
+      window.location.href = '/spotify/change?bpm=180';
+    }
   }
 }
 
