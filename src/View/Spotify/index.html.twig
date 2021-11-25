@@ -46,7 +46,8 @@
 
 	<div>
 		<p>Target Speed</p>
-		<input type="text">
+		<input type="text" id="target-speed" {% if bpm is defined %} value="{{bpm}}" {% endif %}>
+
 	</div>
 
 
