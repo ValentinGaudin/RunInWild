@@ -16,6 +16,7 @@
 			</button>
 			<img class="arrow_spotify" src="/assets/images/up.png">
 		</div>
+
 		</input>
 	</form>
 	<div class="logo">
@@ -37,23 +38,21 @@
 		<p>Last speed in interval:
 			<span id="last-speed"></span>
 		</p>
+
 	</div>
+	<p>ACTUAL BPM :</p>
+	<p id="actual-bpm">{{actual}}</p>
+</div>
+<div>
+	<p>Last speed in interval:
+		<span id="last-speed"></span>
+	</p>
+</div>
 
-	{# {% for playlist in results.playlists.items %}
+<div>
+	<p>Target Speed</p>
+	<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
+</div>
 
 
-		<li>{{playlist.name}}</li>
-		<li>{{playlist.id}}</li>
-		<li>{{playlist.description}}</li>
 
-		<hr>
-	{% endfor %} #}
-{% endblock %}
-
-{% block javascript %}
-	<script src="https://sdk.scdn.co/spotify-player.js"></script>
-	<script src="/assets/js/webPlayback.js"></script>
-	<script src="/assets/js/music_main.js"></script>
-	<script src="/assets/js/Player.js"></script>
-	<script src="/assets/js/style.js"></script>
-{% endblock %}
