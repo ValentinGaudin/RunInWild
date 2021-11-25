@@ -6,7 +6,7 @@ date.setMinutes(date.getMinutes() - 30);
 const records = [[45.74884, 4.80716, date]];
 
 let targetSpeed = targetSpeedInput.value ? targetSpeedInput.value : 120;
-const acceptedValuesBpm = [120, 130, 140, 150, 160, 170, 180, 190, 200];
+const acceptedValuesBpm = [120, 130, 140, 150, 160, 170, 180, 190];
 
 document.addEventListener('DOMContentLoaded', (event) => {
   if ('geolocation' in navigator) {
@@ -51,12 +51,24 @@ function retrievePosition(position) {
     lastSpeedDisplay.innerHTML = `${speedInMinPerKm} min/km`;
 
     const currentBpm = Math.round(speedInMinPerKm * 20);
-    console.log(currentBpm, targetSpeed);
-    exit();
 
-    if (currentBpm < targetSpeed) {
-      window.location.href = `/spotify/change?bpm=${targetSpeed}`;
+    let targetBpm = undefined;
+
+    if (currentBpm < 130) {
+      targetBpm = 120;
+    } else if (currentBpm > 180) {
+      targetBpm = 190;
+    } else if (currentBpm < targetSpeed) {
+      targetBpm = currentBpm + 10;
+    } else if (currentBpm > targetSpeed) {
+      targetBpm = currentBpm - 10;
+    } else {
+      targetBpm = currentBpm;
     }
+
+    console.log(currentBpm, targetBpm);
+
+    /* window.location.href = `/spotify/change?bpm=${targetBpm}`; */
   }
 }
 
