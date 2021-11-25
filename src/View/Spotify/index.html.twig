@@ -1,7 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/music.css">
+	<link
+	rel="stylesheet" href="/assets/css/music.css">
+{# <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' *spotify.com "> #}
+<meta allow="encrypted-media">
+
 {% endblock %}
 
 {% block content %}
@@ -40,18 +44,12 @@
 			</p>
 		</div>
 	</div>
-{% for playlist in results.playlists.items %}
 
-	<li>{{playlist.name}}</li>
-	<li>{{playlist.id}}</li>
-	<li>{{playlist.description}}</li>
-
-	<hr>
-{% endfor %}
-    
-
-{{player}}{% endblock %}{% block javascript %}
-<script src="https://sdk.scdn.co/spotify-player.js"></script>
-<script src="/assets/js/webPlayback.js"></script>
-<script src="/assets/js/music_main.js"></script>
-<script src="/assets/js/style.js"></script>{% endblock %}
+{% endblock %}
+{% block javascript %}
+	<script src="https://sdk.scdn.co/spotify-player.js"></script>
+	<script src="/assets/js/webPlayback.js"></script>
+	<script src="/assets/js/music_main.js"></script>
+	<script src="/assets/js/Player.js"></script>
+	<script src="/assets/js/style.js"></script>
+{% endblock %}

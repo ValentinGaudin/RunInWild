@@ -33,6 +33,10 @@ function handleChangeTargetSpeed(e, acceptedValuesBpm) {
 
   if (acceptedValuesBpm.includes(targetValue)) {
     targetSpeed = targetValue;
+  } else if (targetValue < 130) {
+    targetSpeed = 120;
+  } else if (targetValue > 180) {
+    targetSpeed = 190;
   }
 }
 
@@ -66,7 +70,7 @@ function retrievePosition(position) {
       targetBpm = currentBpm;
     }
 
-    window.location.href = `/spotify/change?target=${targetSpeed}&bpm=${targetBpm}`;
+    window.location.href = `/spotify/change?target=${targetSpeed}&bpm=${targetBpm}&actual=${currentBpm}`;
   }
 }
 

@@ -16,6 +16,10 @@ return [
     'items/delete' => ['ItemController', 'delete',],
     'spotify/test' => ['SpotifyController', 'test'],
     '' => ['SpotifyController', 'show'],
-    'spotify/change' => ['SpotifyController', 'change', ['target', 'bpm']],
+
+    'spotify/tracking/Playlist' => ['TrackController','trackPlaylist'],
+    'spotify/tracking/Track' => ['TrackController','trackTrack'],
+    'spotify/tracking/device' => ['TrackController','device'],
+    'spotify/change' => ['SpotifyController', 'change', ['target', 'bpm', 'actual']],
     'deconnexion' => ['SpotifyController', 'deconnexion']
 ];

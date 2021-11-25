@@ -17,14 +17,12 @@ class SpotifyController extends AbstractController
             return $this->twig->render('Spotify/index.html.twig');
         }
 
-
         $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
-
 
         $client = HttpClient::create();
 
-        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
-            'query' => [
+        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=20", [
+            'headers' => [
                 "Accept" => "application/json",
                 "Content-Type" => "application/json",
                 "Authorization" => $token
@@ -43,7 +41,7 @@ class SpotifyController extends AbstractController
         }
     }
 
-    public function change($target, $bpm)
+    public function change($target, $bpm, $actual)
     {
 
         $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
@@ -65,7 +63,7 @@ class SpotifyController extends AbstractController
             $randId = rand(0, count($filteredPlaylists) - 1);
 
             $id = $filteredPlaylists[$randId]['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['id' => $id, 'target' => $target]);
+            return $this->twig->render('Spotify/index.html.twig', ['id' => $id, 'target' => $target, 'actual' => $actual]);
         }
         return $response->getStatusCode();
     }
