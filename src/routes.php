@@ -17,6 +17,8 @@ return [
     'spotify/test' => ['SpotifyController', 'test'],
     '' => ['SpotifyController', 'show'],
     'spotify/change' => ['SpotifyController', 'change', ['bpm']],
-    'spotify/trackingPlaylist' => ['TrackController','trackPlaylist'],
-    'spotify/trackingTrack' => ['TrackController','trackTrack'],
+    'spotify/tracking/Playlist' => ['TrackController','trackPlaylist'],
+    'spotify/tracking/Track' => ['TrackController','trackTrack'],
+    'spotify/tracking/device' => ['TrackController','device'],
+    'deconnexion' => ['SpotifyController', 'deconnexion']
 ];

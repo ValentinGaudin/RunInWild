@@ -4,13 +4,35 @@
 	<link
 	rel="stylesheet" href="/assets/css/music.css">
 {# <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' *spotify.com "> #}
+<meta allow="encrypted-media">
 
 {% endblock %}
 
 {% block content %}
-
-	<h1>Hello Wilder !</h1>
-	<button id="record-button">Record</button>
+	<form action="/spotify" method="post" id="bouton_spotify">
+		<div class="div_spotify_image">
+			<button class="spotify_image_black">
+				<img onmouseover='passageDeLaSouris(this)' onmouseout='departDeLaSouris(this)' id="black" src="/assets/images/black-spotify.png">
+			</button>
+			<img class="arrow_spotify" src="/assets/images/up.png">
+		</div>
+		</input>
+	</form>
+	<div class="logo">
+    	<img class="logo_image" src="/assets/images/RunInWild-orange.png">
+    </div>
+	<div class="frame_spotify image">
+		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
+			<iframe class="frame" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+			{# <iframe id="track" class="frame" src="" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> #}
+		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
+    </div>
+	<div class="div_orange">
+		<div class="vitesse">
+			<button id="record-button">Record</button>
+		</div>
+		<p>ACTUAL BPM :</p>
+	</div>
 	<div>
 		<p>Last speed in interval:
 			<span id="last-speed"></span>
@@ -26,25 +48,6 @@
 
 		<hr>
 	{% endfor %} #}
-
-    <pre>
-        {{ dump(results) }}
-    </pre>
-	<pre>
-        {{ dump(player) }}
-    </pre>
-
-	<h1>Hello Wilder !</h1>
-
-	<div class="frame_spotify">
-		<iframe id="playlist" src="" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-	</div>
-	<div class="frame_spotify">
-        <iframe id="track" src="https://open.spotify.com/embed/track/5pmbZWt1lYVMvZ12MSdtqF?utm_source=generator" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-	</div>
-
-
 {% endblock %}
 
 {% block javascript %}
@@ -52,4 +55,5 @@
 	<script src="/assets/js/webPlayback.js"></script>
 	<script src="/assets/js/music_main.js"></script>
 	<script src="/assets/js/Player.js"></script>
+	<script src="/assets/js/style.js"></script>
 {% endblock %}

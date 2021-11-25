@@ -1,27 +1,52 @@
 {% extends 'layout.html.twig' %}
-
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/music.css">
+{% endblock %}
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <div class="frame_spotify">
-    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EfUXcn9uVYPRP?utm_source=generator" width="90%" height="50" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    </div>
-    <div class="frame_spotify">
-    <p>Précédent</p>
-    <iframe src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    <p>Suivant</p>
-    </div>
-<html>
-    <head>
-        <title>Spotify Web Playback SDK Quick Start</title>
-    </head>
-    <body>
-        <form action="/" method="post">
-		        <input type="submit" value="Connexion">
-	      </form>
-        <h1>Spotify Web Playback SDK Quick Start</h1>
-        <script src="https://sdk.scdn.co/spotify-player.js"></script>
-        <script src="/assets/js/webPlayback.js"></script>
-        <button id="togglePlay">Play</button>
-    </body>
-</html>
+	<form action="/spotify" method="post" id="bouton_spotify">
+		<div class="div_spotify_image">
+			<button class="spotify_image_black">
+				<img onmouseover='passageDeLaSouris(this)' onmouseout='departDeLaSouris(this)' id="black" src="/assets/images/black-spotify.png">
+			</button>
+			<img class="arrow_spotify" src="/assets/images/up.png">
+		</div>
+	</form>
+	<div class="logo">
+		<img class="logo_image" src="/assets/images/RunInWild-orange.png"></div>
+	<div class="frame_spotify image">
+		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
+		<iframe class="frame" src="https://open.spotify.com/embed/track/2unWIyuvmBgp2mk8PlY0UG?utm_source=generator" width="60%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
+	</div>
+	<div class="div_orange">
+		<div class="vitesse">
+			<button id="record-button">RECORD</button>
+		</div>
+		<div class="vitesse_bpm">
+			<p class="">ACTUAL BPM :</p>
+		</div>
+	</div>
+	<div>
+		<p>Last speed in interval:
+			<span id="last-speed"></span>
+		</p>
+	</div>
+
+	{% for playlist in results.playlists.items %}
+
+		<li>{{playlist.name}}</li>
+		<li>{{playlist.id}}</li>
+		<li>{{playlist.description}}</li>
+
+		<hr>
+	{% endfor %}
+
+
+	{{player}}
+{% endblock %}
+{% block javascript %}
+	<script src="https://sdk.scdn.co/spotify-player.js%22%3E</script>
+						    <script src=" /assets/js/webPlayback.js"></script>
+	<script src="/assets/js/music_main.js"></script>
+	<script src="/assets/js/style.js"></script>
 {% endblock %}

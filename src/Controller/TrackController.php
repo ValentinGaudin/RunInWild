@@ -6,11 +6,8 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class TrackController extends AbstractController
 {
-    private const TOKEN = "BQDVb11PQv8g0zn8jTIKLpvdZVe5MSWZC450o38pRwq01HauAUjSBuRe_FMkMr1dUbPMQvOETjfpFzoVzrf8JJNKgqUhtFHJA7MDauQfxtJziqYXFHuSVzRnBBHqSFTZ42nQAtRC7vwJ0QAcOYGdE_7E4grwBIX9LQ";
-
     public function trackPlaylist()
     {
-        $token = self::TOKEN;
 
         $client = HttpClient::create();
 
@@ -19,15 +16,45 @@ class TrackController extends AbstractController
                 "Accept" => "application/json",
                 "Content-Type" => "application/json"
             ],
-            "auth_bearer" => $token
+            "auth_bearer" => $_SESSION['token']
         ]);
-        $track = $response -> getContent();
+        $playlist = $response -> getContent();
 
-        
-        return $track;
+        return $playlist;
 
     }
 
+    public function trackTrack()
+    {
+        $client = HttpClient::create();
+
+        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=track", [
+            'headers' => [
+                "Accept" => "application/json",
+                "Content-Type" => "application/json"
+            ],
+            "auth_bearer" => $_SESSION['token']
+        ]);
+        $track = $response -> getContent();
+
+        return $track;
+    }
+
+    public function device()
+    {
+    $client = HttpClient::create();
+
+    $response = $client->request("GET", "https://api.spotify.com/v1/me/player/devices", [
+        'headers' => [
+            "Accept" => "application/json",
+            "Content-Type" => "application/json"
+        ],
+        "auth_bearer" => $_SESSION['token']
+    ]);
+    $device = $response -> getContent();
+
+    return $device;
+    }
 }
 
 //https://api.spotify.com/v1/search?q=name%3Abpm&type=playlist&limit=40
