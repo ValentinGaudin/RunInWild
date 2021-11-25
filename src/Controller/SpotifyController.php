@@ -59,7 +59,7 @@ class SpotifyController extends AbstractController
         $randId = rand(0, count($playlists) - 1);
 
         $id = $playlists[$randId]['id'];
-        return $this->twig->render('Spotify/index.html.twig', ['id' => $id, 'target' => $target, 'actual' => $actual]);
+        return $this->twig->render('Spotify/index.html.twig', ['id' => $id, 'target' => $target, 'actual' => $actual, 'session' => 1]);
     }
 
     public function login()
