@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/music.css">
+{% endblock %}
+
+{% block content %}
+	<h1>Test</h1>
+
+	<button id="record-button">Record</button>
+	<div>
+		<p>Last speed in interval:
+			<span id="last-speed"></span>
+		</p>
+	</div>
+
+
+	<div id="mapholder"></div>
+	<div id="mapholder2"></div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/assets/js/music_main.js"></script>
+{% endblock %}
