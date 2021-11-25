@@ -31,7 +31,7 @@ class SpotifyController extends AbstractController
             $id = $playlists ['1']['id'];
             return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'player' => $player]);
         }
-        
+
         return $response->getStatusCode();
     }
 }
