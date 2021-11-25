@@ -156,8 +156,6 @@ class SpotifyController extends AbstractController
 
         $statusCode = $response->getStatusCode(); // get Response status code 200
 
-        // var_dump($response->getStatusCode());
-        // die();
 
         if ($statusCode === 200) {
             $contents = $response->getContent();
