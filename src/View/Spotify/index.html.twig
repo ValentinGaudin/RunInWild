@@ -10,9 +10,16 @@
 			<button class="spotify_image_black">
 				<img onmouseover='passageDeLaSouris(this)' onmouseout='departDeLaSouris(this)' id="black" src="/assets/images/black-spotify.png">
 			</button>
+			{% if session is not defined %}
 			<img class="arrow_spotify" src="/assets/images/up.png">
+			{% endif %}
 		</div>
 	</form>
+	<div class="div_question_image">
+		<div class="question_image_black">
+			<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
+		</div>
+	</div>
 	<div class="logo">
     	<img class="logo_image" src="/assets/images/RunInWild-orange.png">
     </div>
@@ -22,36 +29,29 @@
 		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
     </div>
 	<div class="div_orange">
+		<div class="target_speed">
+			<p>Target Speed</p>
+			<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
+		</div>
 		<div class="vitesse">
 			<button id="record-button">RECORD</button>
 			<p>Last speed in interval:
 				<span id="last-speed"></span>
 			</p>
 		</div>
-		<div class="vitesse_bpm">
-			<p class="">ACTUAL BPM :</p>
-		</div>
 	</div>
-
 {% for playlist in results.playlists.items %}
 
-        <li>{{playlist.name}}</li>
-        <li>{{playlist.id}}</li>
-        <li>{{playlist.description}}</li>
-        
-        <hr>
+	<li>{{playlist.name}}</li>
+	<li>{{playlist.id}}</li>
+	<li>{{playlist.description}}</li>
+
+	<hr>
 {% endfor %}
     
 
-    {{player}}
-
-
-{% endblock %}
-
-{% block javascript %}
-	<script src="https://sdk.scdn.co/spotify-player.js"></script>
-	<script src="/assets/js/webPlayback.js"></script>
-	<script src="/assets/js/music_main.js"></script>
-	<script src="/assets/js/style.js"></script>
-{% endblock %}
-
+{{player}}{% endblock %}{% block javascript %}
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script src="/assets/js/webPlayback.js"></script>
+<script src="/assets/js/music_main.js"></script>
+<script src="/assets/js/style.js"></script>{% endblock %}

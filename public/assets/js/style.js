@@ -9,3 +9,12 @@ function passageDeLaSouris(element) {
 function departDeLaSouris(element) {
     element.setAttribute('src', '/assets/images/black-spotify.png');
 }
+
+function passageSouris(element) {
+    element.setAttribute('src', '/assets/images/question-orange.png');
+}
+
+function departSouris(element) {
+    element.setAttribute('src', '/assets/images/question-noire.png');
+}
+
