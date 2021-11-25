@@ -13,7 +13,7 @@ class TrackController extends AbstractController
         $token = self::TOKEN;
 
         $client = HttpClient::create();
-        
+
         $response = $client->request("GET", "https://api.spotify.com/v1/me/player/currently-playing", [
             'headers' => [
                 "Accept" => "application/json",
@@ -22,7 +22,7 @@ class TrackController extends AbstractController
             "auth_bearer" => $token
         ]);
         $players = $response -> getContent();
-        
+
         return $players;
     }
 }
