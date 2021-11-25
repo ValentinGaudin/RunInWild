@@ -1,8 +1,10 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = '?token';
+    const token = '?TOKEN';
     const player = new Spotify.Player({
-        name: 'Matthieu Chabot',
-        getOAuthToken: cb => { cb(token); },
+        name: 'Valentin Gaudin',
+        getOAuthToken: cb => { cb(
+            token
+            ); },
         volume: 0.5,
     });
     document.getElementById('togglePlay').onclick = function() {
