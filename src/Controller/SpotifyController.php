@@ -117,8 +117,7 @@ class SpotifyController extends AbstractController
     public function authorize()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            header("Location: https://accounts.spotify.com/authorize?client_id=" . $this->clientId
-                . "&response_type=code&redirect_uri=http://localhost:8000/login");
+            header("Location: https://accounts.spotify.com/authorize?client_id=$this->clientId&response_type=code&redirect_uri=http://localhost:8000/login");
             return;
         }
 
