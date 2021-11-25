@@ -29,12 +29,13 @@ class SpotifyController extends AbstractController
             $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
         } catch (Exception $exception) {
             $this->spotifyManager->refreshToken();
+            try {
+                $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
+            } catch (Exception $exception) {
+                return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
+            }
         }
-        try {
-            $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
-        } catch (Exception $exception) {
-            return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
-        }
+
 
         $id = $playlists['1']['id'];
 
@@ -47,12 +48,13 @@ class SpotifyController extends AbstractController
             $playlists = $this->spotifyManager->getPlaylistByBpm($bpm, 10);
         } catch (Exception $exception) {
             $this->spotifyManager->refreshToken();
+            try {
+                $playlists = $this->spotifyManager->getPlaylistByBpm($bpm, 10);
+            } catch (Exception $exception) {
+                return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
+            }
         }
-        try {
-            $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
-        } catch (Exception $exception) {
-            return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
-        }
+
 
         $randId = rand(0, count($playlists) - 1);
 
