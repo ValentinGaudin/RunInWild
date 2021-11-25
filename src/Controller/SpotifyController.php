@@ -2,11 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpClient\HttpClient;
+use App\Model\SpotifyManager;
+use Exception;
 
 class SpotifyController extends AbstractController
 {
-    private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
+
+    private SpotifyManager $spotifyManager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->spotifyManager = new SpotifyManager();
+    }
 
     public function show()
     {
@@ -17,57 +25,44 @@ class SpotifyController extends AbstractController
             return $this->twig->render('Spotify/index.html.twig');
         }
 
-
-        $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
-
-
-        $client = HttpClient::create();
-
-        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
-            'query' => [
-                "Accept" => "application/json",
-                "Content-Type" => "application/json",
-                "Authorization" => $token
-            ],
-            'auth_bearer' => $_SESSION["token"]
-
-        ]);
-
-        if ($response->getStatusCode() == 200) {
-            $results = $response->toArray();
-
-            $playlists = $results['playlists']['items'];
-
-            $id = $playlists['1']['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['results' => $results, 'id' => $id, 'connexion' => $_SESSION['connexion']]);
+        try {
+            $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
+        } catch (Exception $exception) {
+            $this->spotifyManager->refreshToken();
+            $playlists = $this->spotifyManager->getPlaylistByBpm(120, 10);
+        } catch (Exception $exception) {
+            return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
         }
+
+        $id = $playlists['1']['id'];
+
+        return $this->twig->render('Spotify/index.html.twig', ['results' => $playlists, 'id' => $id, 'connexion' => $_SESSION['connexion'], 'session' => 1]);
     }
 
-    public function change($bpm)
-    {
-        $token = $_SESSION["tokenType"] . ' ' . $_SESSION["token"];
-        $client = HttpClient::create();
+    // public function change($bpm)
+    // {
+    //     $client = HttpClient::create();
 
-        $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
-            'query' => [
-                "Accept" => "application/json",
-                "Content-Type" => "application/json"
-            ],
-            "auth_bearer" => $_SESSION["token"]
-        ]);
+    //     $response = $client->request("GET", "https://api.spotify.com/v1/search?q=bpm&type=playlist&limit=10", [
+    //         'query' => [
+    //             "Accept" => "application/json",
+    //             "Content-Type" => "application/json"
+    //         ],
+    //         "auth_bearer" => $_SESSION["token"]
+    //     ]);
 
-        if ($response->getStatusCode() == 200) {
-            $results = $response->toArray();
-            $playlists = $results['playlists']['items'];
+    //     if ($response->getStatusCode() == 200) {
+    //         $results = $response->toArray();
+    //         $playlists = $results['playlists']['items'];
 
-            $filteredPlaylists = $this->getFilteredPlaylists($playlists, $bpm);
-            $randId = rand(0, count($filteredPlaylists) - 1);
+    //         $filteredPlaylists = $this->getFilteredPlaylists($playlists, $bpm);
+    //         $randId = rand(0, count($filteredPlaylists) - 1);
 
-            $id = $filteredPlaylists[$randId]['id'];
-            return $this->twig->render('Spotify/index.html.twig', ['id' => $id]);
-        }
-        return $response->getStatusCode();
-    }
+    //         $id = $filteredPlaylists[$randId]['id'];
+    //         return $this->twig->render('Spotify/index.html.twig', ['id' => $id]);
+    //     }
+    //     return $response->getStatusCode();
+    // }
 
     private function getFilteredPlaylists($playlists, $key)
     {
@@ -87,7 +82,7 @@ class SpotifyController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $code = $_GET['code'];
             try {
-                $infoToken = $this->getAccessToken($code);
+                $infoToken = $this->spotifyManager->getAccessToken($code);
             } catch (\Exception $exception) {
                 return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
             }
@@ -107,7 +102,8 @@ class SpotifyController extends AbstractController
 
     public function authorize()
     {
-        header("Location: https://accounts.spotify.com/authorize?client_id=$this->clientId&response_type=code&redirect_uri=http://localhost:8000/login");
+        $clientId = $this->spotifyManager->getClientId();
+        header("Location: https://accounts.spotify.com/authorize?client_id=$clientId&response_type=code&redirect_uri=http://localhost:8000/login");
     }
 
     public static function generateRandomString($length = 16)
@@ -121,37 +117,7 @@ class SpotifyController extends AbstractController
         return $randomString;
     }
 
-    public function getAccessToken(string $code): array
-    {
-        $client = HttpClient::create();
 
-        $response = $client->request('POST', 'https://accounts.spotify.com/api/token', [
-            'headers' => [
-                "Content-Type" => "application/x-www-form-urlencoded",
-                "Authorization" => "Basic " . CLIENT_64
-
-            ],
-            'body' => [
-                'grant_type' =>  "authorization_code",
-                'code' => $code,
-                'redirect_uri' => 'http://localhost:8000/login',
-
-            ],
-
-        ]);
-
-        $statusCode = $response->getStatusCode(); // get Response status code 200
-
-        if ($statusCode === 200) {
-            $contents = $response->getContent();
-            // get the response in JSON format
-
-            $accessToken = json_decode($contents, true);
-
-            return $accessToken;
-        }
-        throw new \Exception("Error code $statusCode");
-    }
 
     public function deconnexion()
     {
