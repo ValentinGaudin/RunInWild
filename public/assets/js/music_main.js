@@ -81,7 +81,7 @@ function getSpeedFromTwoRecords(record1, record2) {
     record2[0],
     record2[1]
   );
-  distance = distance === 0 ? 0.1 : distance;
+  distance = distance < 0.1 ? 100 : distance;
 
   const interval = (record2[2] - record1[2]) / (1000 * 60 * 60); // interval in hours
 
