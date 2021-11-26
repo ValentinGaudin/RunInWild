@@ -8,6 +8,7 @@
 // e.g route '/item/edit?id=1' will execute $itemController->edit(1)
 return [
     'login' => ['SpotifyController', 'login', ['code']],
+    'help' => ['SpotifyController', 'help'],
     'spotify' => ['SpotifyController', 'authorize'],
     'items' => ['ItemController', 'index',],
     'items/edit' => ['ItemController', 'edit', ['id']],
@@ -17,9 +18,9 @@ return [
     'spotify/test' => ['SpotifyController', 'test'],
     '' => ['SpotifyController', 'show'],
 
-    'spotify/tracking/Playlist' => ['TrackController','trackPlaylist'],
-    'spotify/tracking/Track' => ['TrackController','trackTrack'],
-    'spotify/tracking/device' => ['TrackController','device'],
+    'spotify/tracking/Playlist' => ['TrackController', 'trackPlaylist'],
+    'spotify/tracking/Track' => ['TrackController', 'trackTrack'],
+    'spotify/tracking/device' => ['TrackController', 'device'],
     'spotify/change' => ['SpotifyController', 'change', ['target', 'bpm', 'actual']],
     'deconnexion' => ['SpotifyController', 'deconnexion']
 ];
