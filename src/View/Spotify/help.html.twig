@@ -9,30 +9,12 @@
 {% endblock %}
 
 {% block content %}
-	<form action="/spotify" method="post" id="bouton_spotify">
-		<div class="div_spotify_image">
-			<button class="spotify_image_black">
-				<img onmouseover='passageDeLaSouris(this)' onmouseout='departDeLaSouris(this)' id="black" src="/assets/images/black-spotify.png">
-			</button>
-			{% if session is not defined %}
-				<img class="arrow_spotify" src="/assets/images/up.png">
-			{% endif %}
-		</div>
-	</form>
-	<a href="/help">
-		<div class="div_question_image">
-			<div class="question_image_black">
-				<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
-			</div>
-		</div>
-	</a>
 
 	<div class="logo">
 		<a href="/">
 			<img class="logo_image" src="/assets/images/RunInWild-orange.png">
 		</a>
 	</div>
-
 
 	<div class="help-text">
 		Enter a desired target speed and we will adjust the playlist for you so that you keep up with your target running pace !
@@ -75,8 +57,6 @@
 				</a>
 			</div>
 		</div>
-
-
 	</div>
 
 

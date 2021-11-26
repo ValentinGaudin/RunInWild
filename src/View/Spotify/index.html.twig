@@ -10,13 +10,12 @@
 
 {% block content %}
 
-		<form action="
+	<form action="
 			{% if session is defined %}
 				/deconnexion
 			{% else %}
 				/spotify
 			{% endif %}" method="post" id="bouton_spotify">
-
 		<div class="div_spotify_image">
 			{% if session is defined %}
 				<a href="/deconnexion" class="spotify_image_black deconnexion">

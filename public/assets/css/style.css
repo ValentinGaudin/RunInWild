@@ -5,6 +5,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 p {
   margin: 5px;
@@ -38,7 +39,7 @@ p {
 }
 
 .spotify_image_black {
-  position: fixed;
+  position: absolute;
   top: 10px;
   padding: 10px;
   background-color: transparent;
@@ -46,7 +47,7 @@ p {
 }
 
 .question_image_black {
-  position: fixed;
+  position: absolute;
   top: 10px;
   padding: 10px;
 }
@@ -84,9 +85,9 @@ p {
 
 .arrow_spotify {
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 70px;
-  right: 455px;
+  right: 5px;
   width: 50px;
   height: 50px;
   padding: 5px;
@@ -94,7 +95,7 @@ p {
 
 .div_orange {
   width: 100%;
-  background-image: url("/assets/images/bpm_line.png"),
+  background-image: url("/assets/images/bpm.png"),
     linear-gradient(0deg, rgba(241, 29, 253, 1) 0%, rgba(252, 76, 1, 1) 64%);
   background-size: cover;
   /* background-blend-mode: normal; */
