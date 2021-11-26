@@ -11,11 +11,11 @@
 {% block content %}
 
 	<form action="
-			{% if session is defined %}
-				/deconnexion
-			{% else %}
-				/spotify
-			{% endif %}" method="post" id="bouton_spotify">
+																	{% if session is defined %}
+																		/deconnexion
+																	{% else %}
+																		/spotify
+																	{% endif %}" method="post" id="bouton_spotify">
 		<div class="div_spotify_image">
 			{% if session is defined %}
 				<a href="/deconnexion" class="spotify_image_black deconnexion">
@@ -55,8 +55,20 @@
 	</div>
 	<div class="div_orange">
 		<div class="target_speed">
-			<p>Target Speed</p>
+			<p>Target Speed
+				<span class="unit">(min/km)</span>
+			</p>
 			<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
+		</div>
+		<div class="target_speed">
+			<p>Current Speed</p>
+			<p>
+				{% if actual is defined %}
+					{{actual}}
+					<span class="unit">min/km</span>
+				{% endif %}
+			</p>
+
 		</div>
 		<div class="vitesse">
 			<button id="record-button">RECORD</button>
