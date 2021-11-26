@@ -7,7 +7,7 @@ use Exception;
 
 class SpotifyManager
 {
-    private string $clientId = 'ac2865071d374203af6c8d46629f7bcb';
+    private string $clientId = 'dc0e115a50414217a9bdd729ca48c41b';
     private $client;
 
     public function __construct()
