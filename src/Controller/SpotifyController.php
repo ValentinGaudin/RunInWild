@@ -109,4 +109,9 @@ class SpotifyController extends AbstractController
         session_destroy();
         header('Location:/');
     }
+
+    public function help()
+    {
+        return $this->twig->render('Spotify/help.html.twig');
+    }
 }

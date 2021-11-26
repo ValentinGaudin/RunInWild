@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends "layout.html.twig" %}
 
 {% block stylesheet %}
 	<link
@@ -32,36 +32,20 @@
 			<img class="logo_image" src="/assets/images/RunInWild-orange.png">
 		</a>
 	</div>
-	<div class="frame_spotify image">
-		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
-		<iframe class="frame" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="60%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-		{# <iframe id="track" class="frame" src="" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> #}
-		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
-	</div>
-	<div class="div_orange">
-		<div class="target_speed">
-			<p>Target Speed</p>
-			<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
-		</div>
-		<div class="vitesse">
-			<button id="record-button">RECORD</button>
-			<p>Last speed in interval:
-				<span id="last-speed"></span>
-			</p>
-		</div>
-	</div>
-	<p>ACTUAL BPM :</p>
-	<p id="actual-bpm">{{actual}}</p>
+
 
 	<div>
-		<p>Last speed in interval:
-			<span id="last-speed"></span>
-		</p>
+		Enter a desired target speed and we will adjust the playlist for you so that you keep up with your target running pace !
+		<br>This project was coded by
+		<a href="https://github.com/MatthieuChabot" target="_blank">Matthieu Chabot</a>,
+		<a href="https://github.com/Permarole" target="_blank">Jonathan Permarole</a>,
+		<a href="https://github.com/ValentinGaudin" target="_blank">Valentin Gaudin</a>
+		and
+		<a href="https://github.com/jgautrais" target="_blank">Jérémy Gautrais</a>.
+
+
 	</div>
-	<div>
-		<p>Target Speed</p>
-		<input type="text" id="target-speed" name="target-speed" {% if target is defined %} value="{{target}}" {% endif %}>
-	</div>
+
 
 {% endblock %}
 {% block javascript %}
