@@ -1,255 +1,252 @@
 body {
-  margin: 0px;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+    margin: auto;
+    max-width: 500px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
 }
 p {
-  margin: 5px;
+    margin: 5px;
 }
 
 .logo {
-  background-image: url("/assets/images/line.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-image: url("/assets/images/line.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo_image {
-  width: 200px;
-  height: 100px;
+    width: 200px;
+    height: 100px;
 }
 
 .div_spotify_image {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .div_question_image {
-  display: flex;
-  justify-content: flex-start;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .spotify_image_black {
-  position: fixed;
-  top: 10px;
-  padding: 10px;
-  background-color: transparent;
-  border: 0px;
+    position: absolute;
+    top: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: 0px;
 }
 
-/* .deconnexion {
-  width: 50px;
-  height: 50px;
-} */
-
 .question_image_black {
-  position: fixed;
-  top: 10px;
-  padding: 10px;
+    position: absolute;
+    top: 10px;
+    padding: 10px;
 }
 
 .spotify_image_black img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .frame_spotify {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
 }
 
 .frame {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .image {
-  background-image: url("/assets/images/runner.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 300px;
+    background-image: url("/assets/images/runner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 300px;
 }
 
 .arrow {
-  width: 55px;
-  height: 55px;
-  padding: 10px;
+    width: 80px;
+    height: 80px;
+    padding: 10px;
 }
 
 .arrow_spotify {
-  display: flex;
-  position: fixed;
-  top: 70px;
-  width: 50px;
-  height: 50px;
-  padding: 5px;
+    display: flex;
+    position: absolute;
+    top: 70px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
 }
 
 .div_orange {
-  width: 100%;
-  background: rgb(241, 29, 253);
-  background: linear-gradient(
-    0deg,
-    rgba(241, 29, 253, 1) 0%,
-    rgba(252, 76, 1, 1) 64%
-  );
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    background-image: url("/assets/images/bpm.png"),
+        linear-gradient(0deg, rgba(253, 29, 29) 0%, rgba(252, 76, 1, 1) 64%);
+    background-size: cover;
+    /* background-blend-mode: normal; */
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .vitesse {
-  background-color: white;
-  border-radius: 10px;
-  width: 200px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.9;
-  margin: 10px;
-  box-shadow: 0px 0px 15px pink;
-  cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    margin: 10px;
+    box-shadow: 0px 0px 15px pink;
+    cursor: pointer;
 }
 
 .target_speed {
-  background-color: white;
-  border-radius: 10px;
-  width: 200px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.9;
-  margin: 20px;
-  font-weight: bold;
-  color: #fc4c01;
-  box-shadow: 0px 0px 15px pink;
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    margin: 20px;
+    font-weight: bold;
+    color: #fc4c01;
+    box-shadow: 0px 0px 15px pink;
 }
 
 .modal-content {
-  margin: 5em auto auto;
-  background-color: rgb(70, 70, 70);
-  color: white;
+    margin: auto auto;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    width: 80%;
 }
 
 .instructions {
-  margin-top: 1em;
-  margin-bottom: 3em;
+    margin-top: 1em;
+    margin-bottom: 3em;
 }
 
 .help-text {
-  font-size: 1.2rem;
-  margin-top: 1rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
 }
 
 .coders-details {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
 }
 
 .coder-name {
-  width: 10rem;
+    width: 10rem;
 }
 
 .coder-links {
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 0;
-  font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 1rem;
 }
 
 .coder-links:first-of-type {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .coder-links a {
-  display: block;
-  width: 1.5rem;
-  height: 1.7rem;
-  margin-left: 0.7rem;
+    display: block;
+    width: 1.5rem;
+    height: 1.7rem;
+    margin-left: 0.7rem;
 }
 
 #target-speed {
-  text-align: center;
-  width: 80%;
+    text-align: center;
+    width: 80%;
 }
 
 #record-button {
-  color: #fc4c01;
-  background-color: white;
-  border: 0px;
-  font-weight: bold;
-  cursor: pointer;
+    color: #fc4c01;
+    background-color: white;
+    border: 0px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #black {
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 #question {
-  width: 45px;
-  height: 45px;
+    width: 45px;
+    height: 45px;
 }
 
 #deconnexion {
-  width: 43px;
-  height: 43px;
+    width: 43px;
+    height: 43px;
 }
 
 @-webkit-keyframes bounce {
-  0%,
-  100% {
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -webkit-transform: translateY(10px);
-    transform: translateY(10px);
-  }
+    0%,
+    100% {
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
 }
 @keyframes bounce {
-  0%,
-  100% {
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
+    0%,
+    100% {
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -moz-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
 }
 img.arrow_spotify {
-  -webkit-animation-name: bounce;
-  animation-name: bounce;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
 }
