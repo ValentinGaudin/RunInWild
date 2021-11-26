@@ -106,4 +106,26 @@ class SpotifyManager
         }
         throw new \Exception("Error code $statusCode");
     }
+
+    public function play(string $id)
+    {
+        $client = HttpClient::create();
+
+        $client->request('PUT', "https://api.spotify.com/v1/me/player/play\" --data \"{\"context_uri\":\"spotify:album:$id\",\"offset\":{\"position\":5},\"position_ms\":0}", [
+            'headers' => [
+                "Accept" => "application/json",
+                "Content-Type" => "application/x-www-form-urlencoded",
+                "Authorization" => "Basic " . CLIENT_64
+
+            ],
+            'body' => [
+                "auth_bearer" => $_SESSION['token'],
+                "context_uri" => "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+                "offset" => [
+                    "position" => 5,
+                    "position_ms" =>  0
+                ],
+            ]
+        ]);
+    }
 }

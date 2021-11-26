@@ -18,7 +18,7 @@ class TrackController extends AbstractController
             ],
             "auth_bearer" => $_SESSION['token']
         ]);
-        $playlist = $response -> getContent();
+        $playlist = $response->getContent();
 
         return $playlist;
     }
@@ -34,7 +34,7 @@ class TrackController extends AbstractController
             ],
             "auth_bearer" => $_SESSION['token']
         ]);
-        $track = $response -> getContent();
+        $track = $response->getContent();
 
         return $track;
     }
@@ -44,13 +44,13 @@ class TrackController extends AbstractController
         $client = HttpClient::create();
 
         $response = $client->request("GET", "https://api.spotify.com/v1/me/player/devices", [
-        'headers' => [
-            "Accept" => "application/json",
-            "Content-Type" => "application/json"
-        ],
-        "auth_bearer" => $_SESSION['token']
+            'headers' => [
+                "Accept" => "application/json",
+                "Content-Type" => "application/json"
+            ],
+            "auth_bearer" => $_SESSION['token']
         ]);
-        $device = $response -> getContent();
+        $device = $response->getContent();
 
         return $device;
     }
