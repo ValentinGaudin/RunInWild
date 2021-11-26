@@ -10,7 +10,7 @@ p {
 }
 
 .logo {
-  background-image: url('/assets/images/line.png');
+  background-image: url("/assets/images/line.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,7 +73,7 @@ p {
 }
 
 .image {
-  background-image: url('/assets/images/runner.jpg');
+  background-image: url("/assets/images/runner.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -120,6 +120,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0.9;
   margin: 10px;
   box-shadow: 0px 0px 15px pink;
   cursor: pointer;
@@ -134,6 +135,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0.9;
   margin: 20px;
   font-weight: bold;
   color: #fc4c01;
@@ -146,7 +148,7 @@ p {
 
 #record-button {
   color: #fc4c01;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   background-color: white;
   border: 0px;
