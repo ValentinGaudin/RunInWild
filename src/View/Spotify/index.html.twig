@@ -11,15 +11,15 @@
 {% block content %}
 
 	<form action="
-					{% if session is defined %}
-						/deconnexion
-					{% else %}
-						/spotify
-					{% endif %}" method="post" id="bouton_spotify">
+																											{% if session is defined %}
+																												/deconnexion
+																											{% else %}
+																												/spotify
+																											{% endif %}" method="post" id="bouton_spotify">
 
 		<div class="div_spotify_image">
 			{% if session is defined %}
-				<a href="/deconnexion">
+				<a href="/deconnexion" class="spotify_image_black deconnexion">
 
 					<img src="/assets/images/deconnexion.png">
 
@@ -35,10 +35,12 @@
 			{% endif %}
 		</div>
 	</form>
-	<div type="button" class="div_question_image" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-		<div class="question_image_black">
+	<div class="div_question_image">
+		<button type="button" class="btn question_image_black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
 			<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
-		</div>
+
+		</button>
 	</div>
 
 	<div class="logo">
@@ -59,13 +61,18 @@
 		</div>
 		<div class="vitesse">
 			<button id="record-button">RECORD</button>
+			{# <p>Last speed in interval:
+																																											<span id="last-speed"></span>
+																																										</p> #}
 		</div>
+	</div>
 
-	{% endblock %}
-	{% block javascript %}
-		<script src="https://sdk.scdn.co/spotify-player.js"></script>
-		<script src="/assets/js/webPlayback.js"></script>
-		<script src="/assets/js/music_main.js"></script>
-		<script src="/assets/js/Player.js"></script>
-		<script src="/assets/js/style.js"></script>
-	{% endblock %}
+
+{% endblock %}
+{% block javascript %}
+	<script src="https://sdk.scdn.co/spotify-player.js"></script>
+	<script src="/assets/js/webPlayback.js"></script>
+	<script src="/assets/js/music_main.js"></script>
+	<script src="/assets/js/Player.js"></script>
+	<script src="/assets/js/style.js"></script>
+{% endblock %}

@@ -51,9 +51,6 @@ function retrievePosition(position) {
     const lastSpeed = getLastSpeed(records);
     const speedInMinPerKm = getMinPerKm(lastSpeed);
 
-    const lastSpeedDisplay = document.getElementById('last-speed');
-    lastSpeedDisplay.innerHTML = `${speedInMinPerKm} min/km`;
-
     const currentBpm = Math.round(speedInMinPerKm * 20);
 
     let targetBpm = undefined;
