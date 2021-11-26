@@ -1,3 +1,16 @@
+# Work in 28 hours in a project about music.
+# 4 workers on the project to give a POC in 28 hours.
+# Go see it
+
+# Made with simple MVC of WCS
+# Api of Spotify with connexion and auth
+# PHP / JS / TWIG / CSS
+
+
+
+
+
+
 # Simple MVC
 
 ## Description
