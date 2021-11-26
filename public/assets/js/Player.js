@@ -8,13 +8,11 @@
 //     })
 //     .catch(() => alert('Not Good'))
 
-// fetch('http://localhost:8000/spotify/tracking/Track')
+// fetch('http://localhost:8000/spotify/tracking/prev')
 //     .then (response => response.json())
 //     .then (data => {
-//         const randomElement = data.tracks.items[Math.floor(Math.random() * data.tracks.items.length)];
-
-//         console.log(randomElement.id)
-//         document.getElementById('track').src = "https://open.spotify.com/embed/track/"+randomElement.id+"?utm_source=generator"
+//         cconsole.log(data)
 
 //     })
 //     .catch(() => alert('Not'))
+

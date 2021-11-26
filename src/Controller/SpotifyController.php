@@ -48,8 +48,10 @@ class SpotifyController extends AbstractController
             $playlists = $this->spotifyManager->getPlaylistByBpm($bpm, 10);
         } catch (Exception $exception) {
             try {
+                if($exception === 401){
                 $this->spotifyManager->refreshToken();
                 $playlists = $this->spotifyManager->getPlaylistByBpm($bpm, 10);
+            }
             } catch (Exception $exception) {
                 return $this->twig->render('Error/error.html.twig', ['exception' => $exception]);
             }

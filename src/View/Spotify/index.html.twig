@@ -11,11 +11,11 @@
 {% block content %}
 
 	<form action="
-																	{% if session is defined %}
-																		/deconnexion
-																	{% else %}
-																		/spotify
-																	{% endif %}" method="post" id="bouton_spotify">
+	{% if session is defined %}
+		/deconnexion
+	{% else %}
+		/spotify
+	{% endif %}" method="post" id="bouton_spotify">
 		<div class="div_spotify_image">
 			{% if session is defined %}
 				<a href="/deconnexion" class="spotify_image_black deconnexion">
@@ -48,7 +48,9 @@
 		</a>
 	</div>
 	<div class="frame_spotify image">
+		<form action="" method="post">
 		<a href="#"><img class="arrow" src="/assets/images/back.png"></a>
+		</form>
 		<iframe class="frame" src="https://open.spotify.com/embed/playlist/{{id}}?utm_source=generator" width="60%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 		{# <iframe id="track" class="frame" src="" width="60%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> #}
 		<a href="#"><img class="arrow" src="/assets/images/next.png"></a>
