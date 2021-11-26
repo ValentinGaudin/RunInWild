@@ -44,10 +44,10 @@ p {
   border: 0px;
 }
 
-.deconnexion {
+/* .deconnexion {
   width: 50px;
   height: 50px;
-}
+} */
 
 .question_image_black {
   position: fixed;
@@ -143,12 +143,11 @@ p {
 
 #target-speed {
   text-align: center;
+  width: 80%;
 }
 
 #record-button {
   color: #fc4c01;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 16px;
   background-color: white;
   border: 0px;
   font-weight: bold;
@@ -163,6 +162,11 @@ p {
 #question {
   width: 45px;
   height: 45px;
+}
+
+#deconnexion {
+  width: 43px;
+  height: 43px;
 }
 
 @-webkit-keyframes bounce {
@@ -204,4 +208,16 @@ img.arrow_spotify {
   animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+}
+
+.modal-content {
+  width: 80vw;
+  margin: 5em auto auto;
+  background-color: rgb(70, 70, 70);
+  color: white;
+}
+
+.instructions {
+  margin-top: 1em;
+  margin-bottom: 3em;
 }

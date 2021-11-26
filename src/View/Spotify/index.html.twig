@@ -21,7 +21,7 @@
 			{% if session is defined %}
 				<a href="/deconnexion" class="spotify_image_black deconnexion">
 
-					<img src="/assets/images/deconnexion.png">
+					<img id="deconnexion" src="/assets/images/deconnexion.png">
 
 				</a>
 			{% endif %}
@@ -35,13 +35,13 @@
 			{% endif %}
 		</div>
 	</form>
-	<a href="/help">
-		<div class="div_question_image">
-			<div class="question_image_black">
-				<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
-			</div>
-		</div>
-	</a>
+	<div class="div_question_image">
+		<button type="button" class="btn question_image_black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+			<img onmouseover='passageSouris(this)' onmouseout='departSouris(this)' id="question" src="/assets/images/question-noire.png">
+
+		</button>
+	</div>
 
 	<div class="logo">
 		<a href="/">
@@ -61,9 +61,6 @@
 		</div>
 		<div class="vitesse">
 			<button id="record-button">RECORD</button>
-			{# <p>Last speed in interval:
-																									<span id="last-speed"></span>
-																								</p> #}
 		</div>
 	</div>
 
