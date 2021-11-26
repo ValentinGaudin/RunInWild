@@ -33,8 +33,8 @@
 		</a>
 	</div>
 
-
-	<div>
+<dialog id="mydialog" open> 
+	<div id="help">
 		Enter a desired target speed and we will adjust the playlist for you so that you keep up with your target running pace !
 		<br>This project was coded by
 		<a href="https://github.com/MatthieuChabot" target="_blank">Matthieu Chabot</a>,
@@ -42,8 +42,12 @@
 		<a href="https://github.com/ValentinGaudin" target="_blank">Valentin Gaudin</a>
 		and
 		<a href="https://github.com/jgautrais" target="_blank">Jérémy Gautrais</a>.
-
-
+<input id="closeMsg" /></div> 
+<div class="boutons"><button onclick="$dialog.close()">Fermer</button>&nbsp;<button onclick="$dialog.returnValue = document.getElementById('closeMsg').value">Définir un message</button></div> 
+	</dialog> 
+		<div class="boutons"><button onclick="$dialog.show()">Ouvrir en mode normal</button>&nbsp;<button onclick="$dialog.showModal()">Ouvrir en mode modal</button></div> 
+	<div class="boutons"><button onclick="alert($dialog.open)">Vérifier l'attribut <code>open</code></button></div> 
+	
 	</div>
 
 
@@ -54,4 +58,5 @@
 	<script src="/assets/js/music_main.js"></script>
 	<script src="/assets/js/Player.js"></script>
 	<script src="/assets/js/style.js"></script>
+	<script src="/assets/js/_help.js"></script>
 {% endblock %}

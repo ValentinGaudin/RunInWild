@@ -5,17 +5,16 @@
 	rel="stylesheet" href="/assets/css/music.css">
 	{# <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' *spotify.com "> #}
 	<meta allow="encrypted-media">
-
 {% endblock %}
 
 {% block content %}
 
 	<form action="
-															{% if session is defined %}
-																/deconnexion
-															{% else %}
-																/spotify
-															{% endif %}" method="post" id="bouton_spotify">
+		{% if session is defined %}
+			/deconnexion
+		{% else %}
+			/spotify
+		{% endif %}" method="post" id="bouton_spotify">
 
 		<div class="div_spotify_image">
 			{% if session is defined %}
@@ -62,10 +61,11 @@
 		<div class="vitesse">
 			<button id="record-button">RECORD</button>
 			{# <p>Last speed in interval:
-																									<span id="last-speed"></span>
-																								</p> #}
+				<span id="last-speed"></span>
+			</p> #}
 		</div>
 	</div>
+
 
 
 {% endblock %}
@@ -75,4 +75,5 @@
 	<script src="/assets/js/music_main.js"></script>
 	<script src="/assets/js/Player.js"></script>
 	<script src="/assets/js/style.js"></script>
+	<script src="/assets/js/_help.js"></script>
 {% endblock %}
