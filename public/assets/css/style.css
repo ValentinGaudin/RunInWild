@@ -141,6 +141,51 @@ p {
   box-shadow: 0px 0px 15px pink;
 }
 
+.modal-content {
+  width: 80vw;
+  margin: 5em auto auto;
+  background-color: rgb(70, 70, 70);
+  color: white;
+}
+
+.instructions {
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+
+.help-text {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.coders-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.coder-name {
+  width: 10rem;
+}
+
+.coder-links {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.coder-links:first-of-type {
+  margin-top: 1rem;
+}
+
+.coder-links a {
+  display: block;
+  width: 1.5rem;
+  height: 1.7rem;
+  margin-left: 0.7rem;
+}
+
 #target-speed {
   text-align: center;
   width: 80%;
@@ -208,16 +253,4 @@ img.arrow_spotify {
   animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-}
-
-.modal-content {
-  width: 80vw;
-  margin: 5em auto auto;
-  background-color: rgb(70, 70, 70);
-  color: white;
-}
-
-.instructions {
-  margin-top: 1em;
-  margin-bottom: 3em;
 }
