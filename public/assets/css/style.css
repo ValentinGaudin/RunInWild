@@ -204,3 +204,36 @@ img.arrow_spotify {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
+
+.help-text {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.coders-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.coder-name {
+  width: 10rem;
+}
+
+.coder-links {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.coder-links:first-of-type {
+  margin-top: 1rem;
+}
+
+.coder-links a {
+  display: block;
+  width: 1.5rem;
+  height: 1.7rem;
+  margin-left: 0.7rem;
+}
